@@ -65,7 +65,7 @@ public class dbworker {
             System.out.println("Error in create" + e);
         }
     }
-    public static void update(Student a,String wid) {
+    public static void update(Student a, String wid) {
         try {
             String updateSQL = "UPDATE data SET id=?,name=?,midlename=?,lastname=? WHERE id=?";
             ps = con.prepareStatement(updateSQL);
@@ -79,15 +79,13 @@ public class dbworker {
             System.out.println("Error in update" + e);
         }
     }
-    public static void delete(String id)
-    {
+    public static void delete(String id) {
         try {
-        String delSQL ="DELETE FROM data WHERE id=?";
-        ps=con.prepareStatement(delSQL);
-        ps.setString(1, id);
-        ps.executeUpdate();
-        }
-        catch (Exception e) {
+            String delSQL = "DELETE FROM data WHERE id=?";
+            ps = con.prepareStatement(delSQL);
+            ps.setString(1, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
             System.out.println("Error in delete" + e);
         }
     }

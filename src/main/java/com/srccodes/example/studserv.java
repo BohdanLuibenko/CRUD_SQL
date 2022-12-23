@@ -46,7 +46,7 @@ public class studserv extends HttpServlet {
         String jsonstr = res.toString();
         Gson g = new Gson();
         Student stud = g.fromJson(jsonstr, Student.class);
-        dbworker.create(printWriter,stud);
+        dbworker.create(printWriter, stud);
     }
 
     protected void doPut(HttpServletRequest request, HttpServletResponse response)
