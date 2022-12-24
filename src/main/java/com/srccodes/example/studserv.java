@@ -68,7 +68,8 @@ public class studserv extends HttpServlet {
 
     protected void doDelete(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        PrintWriter printWriter = response.getWriter();
         String key = request.getParameter("id");
-        dbworker.delete(key);
+        dbworker.delete(key,printWriter);
     }
 }

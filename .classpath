@@ -18,7 +18,11 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/bohdan/apache-log4j-2.19.0-bin/log4j-api-2.19.0.jar"/>
+	<classpathentry kind="lib" path="/home/bohdan/apache-log4j-2.19.0-bin/log4j-api-2.19.0.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="/home/bohdan/Downloads/jar_files(1)/gson-2.8.2.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>

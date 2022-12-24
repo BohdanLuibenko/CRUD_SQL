@@ -5,12 +5,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import org.apache.logging.log4j.Logger;
+import org.apache.tomcat.jakartaee.bcel.util.ClassPath.ClassFile;
+
 import com.theopentutorials.jdbc.db.mysqlconection;
 
 public class dbworker {
     static Connection con = mysqlconection.getConnection();
     static PreparedStatement ps = null;
     static ResultSet rs = null;
+    static Logger log = null;
     public static void getall(PrintWriter p) {
         try {
             ps = con.prepareStatement("select * from data");
@@ -22,9 +26,10 @@ public class dbworker {
                         + "</h1>");
 
             }
-
+            log.trace("Made all getData");
         } catch (Exception e) {
             System.out.println("Error in getData" + e);
+            log.error("Error in getData", e);
         }
     }
     public static void getone(PrintWriter p, String id) {
@@ -38,9 +43,10 @@ public class dbworker {
                             + rs.getString(4) + "</h1>");
 
             }
-
+            log.trace("Made one getData");
         } catch (Exception e) {
             System.out.println("Error in getData" + e);
+            log.error("Error in getData", e);
         }
     }
     public static void create(PrintWriter p, Student a) {
@@ -60,13 +66,15 @@ public class dbworker {
                 p.print("<h1>" + rs.getString(1) + " " + rs.getString(2) + " " + rs.getString(3) + " " + rs.getString(4)
                         + "</h1>");
             }
-
+            log.trace("Made create");
         } catch (Exception e) {
             System.out.println("Error in create" + e);
+            log.error("Error in create", e);
         }
     }
     public static void update(Student a, String wid) {
         try {
+            
             String updateSQL = "UPDATE data SET id=?,name=?,midlename=?,lastname=? WHERE id=?";
             ps = con.prepareStatement(updateSQL);
             ps.setString(1, String.valueOf(a.id));
@@ -75,18 +83,33 @@ public class dbworker {
             ps.setString(4, a.lastname);
             ps.setString(5, wid);
             ps.executeUpdate();
+            log.trace("Made update");
         } catch (Exception e) {
             System.out.println("Error in update" + e);
+            log.error("Error in update", e);
         }
     }
-    public static void delete(String id) {
+    public static void delete(String id,PrintWriter p) {
+       
         try {
+            ps = con.prepareStatement("select * from data");
+            rs = ps.executeQuery();
+            p.print("<h1>Deleted:</h1>");
+            p.print("<h1>id name midlename lastname</h1>");
+            while (rs.next()) {
+                if (Integer.parseInt(id) == Integer.parseInt(rs.getString(1)))
+                    p.print("<h1>" + rs.getString(1) + " " + rs.getString(2) + " " + rs.getString(3) + " "
+                            + rs.getString(4) + "</h1>");
+
+            }
             String delSQL = "DELETE FROM data WHERE id=?";
             ps = con.prepareStatement(delSQL);
             ps.setString(1, id);
             ps.executeUpdate();
+            log.trace("Made delete");
         } catch (Exception e) {
             System.out.println("Error in delete" + e);
+            log.error("Error in delete", e);
         }
     }
 }
