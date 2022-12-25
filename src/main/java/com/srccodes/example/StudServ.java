@@ -11,10 +11,11 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-public class studserv extends HttpServlet {
+import repository.StudentRepository;
+public class StudServ extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public studserv() {
+    public StudServ() {
         super();
     }
 
@@ -27,9 +28,9 @@ public class studserv extends HttpServlet {
         PrintWriter printWriter = response.getWriter();
         String key = request.getParameter("id");
         if (key == null) {
-            dbworker.getall(printWriter);
+            StudentRepository.GetAll(printWriter);
         } else {
-            dbworker.getone(printWriter, key);
+            StudentRepository.GetOne(printWriter, key);
         }
     }
 
@@ -46,7 +47,7 @@ public class studserv extends HttpServlet {
         String jsonstr = res.toString();
         Gson g = new Gson();
         Student stud = g.fromJson(jsonstr, Student.class);
-        dbworker.create(printWriter, stud);
+        StudentRepository.Create(printWriter, stud);
     }
 
     protected void doPut(HttpServletRequest request, HttpServletResponse response)
@@ -63,13 +64,13 @@ public class studserv extends HttpServlet {
         String jsonstr = res.toString();
         Gson g = new Gson();
         Student stud = g.fromJson(jsonstr, Student.class);
-        dbworker.update(stud, key);
+        StudentRepository.Update(stud, key);
     }
 
     protected void doDelete(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter printWriter = response.getWriter();
         String key = request.getParameter("id");
-        dbworker.delete(key,printWriter);
+        StudentRepository.Delete(key,printWriter);
     }
 }

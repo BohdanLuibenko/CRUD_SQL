@@ -1,4 +1,4 @@
-package com.srccodes.example;
+package repository;
 
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -8,14 +8,16 @@ import java.sql.ResultSet;
 import org.apache.logging.log4j.Logger;
 import org.apache.tomcat.jakartaee.bcel.util.ClassPath.ClassFile;
 
-import com.theopentutorials.jdbc.db.mysqlconection;
+import com.srccodes.example.Student;
 
-public class dbworker {
-    static Connection con = mysqlconection.getConnection();
-    static PreparedStatement ps = null;
-    static ResultSet rs = null;
-    static Logger log = null;
-    public static void getall(PrintWriter p) {
+import Util.ConnectorService;
+
+public class StudentRepository {
+   private static Connection con = ConnectorService.getConnection();
+   private static PreparedStatement ps = null;
+   private static ResultSet rs = null;
+   private static Logger log = null;
+    public static void GetAll(PrintWriter p) {
         try {
             ps = con.prepareStatement("select * from data");
             rs = ps.executeQuery();
@@ -32,7 +34,7 @@ public class dbworker {
             log.error("Error in getData", e);
         }
     }
-    public static void getone(PrintWriter p, String id) {
+    public static void GetOne(PrintWriter p, String id) {
         try {
             ps = con.prepareStatement("select * from data");
             rs = ps.executeQuery();
@@ -49,7 +51,7 @@ public class dbworker {
             log.error("Error in getData", e);
         }
     }
-    public static void create(PrintWriter p, Student a) {
+    public static void Create(PrintWriter p, Student a) {
         try {
             String insertSQL = "INSERT INTO data (id, name,midlename,lastname) VALUES (?, ?,?,?)";
             ps = con.prepareStatement(insertSQL);
@@ -72,7 +74,7 @@ public class dbworker {
             log.error("Error in create", e);
         }
     }
-    public static void update(Student a, String wid) {
+    public static void Update(Student a, String wid) {
         try {
             
             String updateSQL = "UPDATE data SET id=?,name=?,midlename=?,lastname=? WHERE id=?";
@@ -89,7 +91,7 @@ public class dbworker {
             log.error("Error in update", e);
         }
     }
-    public static void delete(String id,PrintWriter p) {
+    public static void Delete(String id,PrintWriter p) {
        
         try {
             ps = con.prepareStatement("select * from data");
