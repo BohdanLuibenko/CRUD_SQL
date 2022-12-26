@@ -6,5 +6,4 @@ public class Student {
     public String name;
     public String midlename;
     public String lastname;
-
 }
