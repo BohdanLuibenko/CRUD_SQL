@@ -11,10 +11,13 @@ import com.srccodes.example.Student;
 import repository.StudentRepository;
 
 public class StudentService {
+    
     private Logger log = LogManager.getLogger(StudentService.class);
     private StudentRepository studentRepository = new StudentRepository();
+    
     public ArrayList<Student> getAll() {
         ArrayList<Student> students = new ArrayList<Student>();
+        
         try {
             students = studentRepository.getAll();
         } catch (Exception e) {
@@ -24,34 +27,46 @@ public class StudentService {
     }
     public Student getOne(String key) {
         Student a = new Student();
+        
         try {
             a = studentRepository.getOne(key);
         } catch (Exception e) {
             log.error("Error in getOne", e);
         }
+     
         return a;
     }
-    public Student Create(Student s) {
+    
+    public Student create(Student s) {
+    
         Student a = new Student();
+        
         try {
             a = studentRepository.Create(s);
         } catch (Exception e) {
             log.error("Error in Create", e);
         }
+        
         return a;
     }
-    public void Update(Student s, String key) {
+    
+    public void update(Student s, String key) {
+    
         try {
             studentRepository.Update(s, key);
         } catch (Exception e) {
             log.error("Error in Update", e);
         }
+    
     }
-    public void Delete(String key, PrintWriter p) {
+    public void delete(String key) {
+    
         try {
-            studentRepository.Delete(key, p);
+            studentRepository.Delete(key);
         } catch (Exception e) {
             log.error("Error in Delete", e);
         }
+    
     }
+    
 }

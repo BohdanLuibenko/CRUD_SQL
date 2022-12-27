@@ -2,8 +2,8 @@ package com.srccodes.example;
 
 public class Student {
 
-    public int id;
-    public String name;
-    public String midlename;
-    public String lastname;
+    public int Id;
+    public String Name;
+    public String midleName;
+    public String lastName;
 }
