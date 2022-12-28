@@ -16,7 +16,7 @@ public class StudentService {
     private StudentRepository studentRepository = new StudentRepository();
     
     public ArrayList<Student> getAll() {
-        ArrayList<Student> students = new ArrayList<Student>();
+        ArrayList<Student> students = null;
         
         try {
             students = studentRepository.getAll();
@@ -26,7 +26,7 @@ public class StudentService {
         return students;
     }
     public Student getOne(String key) {
-        Student a = new Student();
+        Student a = null;
         
         try {
             a = studentRepository.getOne(key);
@@ -39,7 +39,7 @@ public class StudentService {
     
     public Student create(Student s) {
     
-        Student a = new Student();
+        Student a = null;
         
         try {
             a = studentRepository.Create(s);
