@@ -21,12 +21,22 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>studserv</display-name>
-    <servlet-name>studserv</servlet-name>
-    <servlet-class>com.srccodes.example.studserv</servlet-class>
+    <display-name>StudServ</display-name>
+    <servlet-name>StudServ</servlet-name>
+    <servlet-class>com.srccodes.example.StudServ</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>studserv</servlet-name>
-    <url-pattern>/studserv</url-pattern>
+    <servlet-name>StudServ</servlet-name>
+    <url-pattern>/StudServ</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>StudentServlet</display-name>
+    <servlet-name>StudentServlet</servlet-name>
+    <servlet-class>com.srccodes.example.StudentServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StudentServlet</servlet-name>
+    <url-pattern>/StudentServlet</url-pattern>
   </servlet-mapping>
 </web-app>
