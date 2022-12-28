@@ -1,6 +1,5 @@
 package service;
 
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import org.apache.logging.log4j.LogManager;
@@ -11,62 +10,60 @@ import com.srccodes.example.Student;
 import repository.StudentRepository;
 
 public class StudentService {
-    
+
     private Logger log = LogManager.getLogger(StudentService.class);
     private StudentRepository studentRepository = new StudentRepository();
-    
+
     public ArrayList<Student> getAll() {
-        ArrayList<Student> students = null;
-        
+
         try {
-            students = studentRepository.getAll();
+            return studentRepository.getAll();
         } catch (Exception e) {
             log.error("Error in getAll", e);
+            throw new RuntimeException("Error in getAll");
         }
-        return students;
     }
     public Student getOne(String key) {
-        Student a = null;
-        
+
         try {
-            a = studentRepository.getOne(key);
+            return studentRepository.getOne(key);
         } catch (Exception e) {
             log.error("Error in getOne", e);
+            throw new RuntimeException("Error in getOne");
         }
-     
-        return a;
+
     }
-    
+
     public Student create(Student s) {
-    
+
         Student a = null;
-        
+
         try {
-            a = studentRepository.Create(s);
+            return studentRepository.Create(s);
         } catch (Exception e) {
             log.error("Error in Create", e);
+            throw new RuntimeException("Error in Create");
         }
-        
-        return a;
+
     }
-    
+
     public void update(Student s, String key) {
-    
+
         try {
             studentRepository.Update(s, key);
         } catch (Exception e) {
             log.error("Error in Update", e);
         }
-    
+
     }
     public void delete(String key) {
-    
+
         try {
             studentRepository.Delete(key);
         } catch (Exception e) {
             log.error("Error in Delete", e);
         }
-    
+
     }
-    
+
 }
